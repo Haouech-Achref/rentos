@@ -111,7 +111,14 @@ namespace Rentos.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Id = model.Id };
+                if(!_userManager.Users.Any(c => c.Id == model.Id))
+                {
+                    if (_userManager.Users.Any(c => c.Email == model.Email))
+                    {
+                        ModelState.AddModelError("DuplicateEmail", "Email already exists.");
+                        return View(model);
+                    }
+                        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Id = model.Id };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -124,7 +131,14 @@ namespace Rentos.Controllers
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
+                
                 AddErrors(result);
+                }
+                else
+                {
+                    ModelState.AddModelError("DuplicateKey", "CIN already exists.");
+                    return View(model);
+                }
             }
 
             // If we got this far, something failed, redisplay form

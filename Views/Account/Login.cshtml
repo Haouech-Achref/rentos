@@ -9,14 +9,17 @@
     ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div class="row">
-    <div class="col-md-6">
+<h2 class="text-center text-muted">@ViewData["Title"]</h2>
+<hr />
+<div class="row justify-content-center">
+    <div class="card bg-dark text-white col-lg-7 pl-5 pr-5 pb-3 pt-3">
+        <div class="card-header">
+            <h4 class="text-center">
+                Please fill in the information below.
+            </h4>
+        </div>
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control" />
@@ -36,7 +39,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-info action-button" type="submit" >Log in</button>
+                    <button class="btn btn-info action-button pull-right" type="submit">Log in</button>
                 </div>
                 <div class="form-group">
                     <p>

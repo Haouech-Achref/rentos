@@ -98,7 +98,8 @@ namespace Rentos.Controllers
         {
             if (ModelState.IsValid)
             {
-                var currentRents = _context.Rent.Where(r => !(r.DropoffDate <= rentSearch.PickupDate && r.PickupDate >= rentSearch.DropoffDate));
+                
+                var currentRents = _context.Rent.Where(r => (DateTime.Compare(r.DropoffDate, rentSearch.PickupDate) < 0 && DateTime.Compare( r.PickupDate ,rentSearch.DropoffDate) > 0));
                 var unavailableCars = new List<Car>();
                 foreach (var item in currentRents)
                 {
@@ -179,9 +180,9 @@ namespace Rentos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Car_CarId,User_UserId,PickupDate,DropoffDate")] Rent rent)
+        public async Task<IActionResult> Edit(int id, [Bind("RentId,Car_CarId,User_UserId,PickupDate,DropoffDate")] Rent rent)
         {
-            if (id != rent.Car_CarId)
+            if (id != rent.RentId)
             {
                 return NotFound();
             }
@@ -190,8 +191,17 @@ namespace Rentos.Controllers
             {
                 try
                 {
+                    var currentRents = _context.Rent.Where(r => !(r.DropoffDate <= rent.PickupDate && r.PickupDate >= rent.DropoffDate));
+                    if(!currentRents.Any(c => c.Car_CarId == rent.Car_CarId))
+                    { 
                     _context.Update(rent);
                     await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Unavailable", "Car is unavailable at the specified date range. Please try again.");
+                        return View(rent);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {

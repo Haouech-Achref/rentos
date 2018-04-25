@@ -4,14 +4,19 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="text-center text-muted">Edit rent information</h2>
 
-<h4>Rent</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-center">
+    <div class="card bg-dark text-white col-lg-7 pl-5 pr-5 pb-3 pt-3">
+        <div class="card-header">
+            <h4 class="text-center">
+                Please fill in the information below.
+            </h4>
+        </div>
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <span class="text-danger">@Html.ValidationMessage("Unavailable")</span>
             <input type="hidden" asp-for="RentId" />
             <input type="hidden" asp-for="Car_CarId" />
             <input type="hidden" asp-for="User_UserId" />
@@ -26,15 +31,13 @@
                 <span asp-validation-for="DropoffDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-info" />
+                <a asp-action="Index" class="btn btn-info">Back</a>
+                <input type="submit" value="Save" class="btn btn-info pull-right" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

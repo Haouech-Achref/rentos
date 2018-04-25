@@ -1,7 +1,7 @@
 ﻿@model Rentos.Models.Car
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit car information";
 }
 
 <h2 class="text-center text-muted">Edit car information</h2>
@@ -17,9 +17,8 @@
             <img id="carPic" src="#" alt="Upload a picture to see the preview here." class="img-thumbnail img-fluid bg-dark" />
         </div>
         <form asp-action="Create" asp-controller="Cars" enctype="multipart/form-data">
+            <input type="hidden" asp-for="CarId" />
             <div class="row justify-content-center">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="CarId" />
                 <div class="form-group m-2">
                     <label asp-for="Manufacturer" class="control-label"></label>
                     <input asp-for="Manufacturer" class="form-control" />
