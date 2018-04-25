@@ -137,6 +137,18 @@ namespace Rentos.Controllers
                 HttpContext.Session.SetString("rent", rentStr);
                 ViewBag.pickup = rentSearch.PickupDate;
                 ViewBag.dropoff = rentSearch.DropoffDate;
+
+                if(!availableCars.Any())
+                {
+                    TempData["statusMessage"] = "Sorry! No available vehicles meet the specified criteria!";
+                    TempData["secondaryMessage"] = "Please try again.";
+                    return RedirectToAction("FindCars");
+                }
+                else
+                {
+                    ViewBag.statusMessage = availableCars.Count() + " vehicle(s) found. Please select one to rent.";
+                    ViewBag.secondaryMessage = "A standard 500DT precaution fee will be applied to all rent operations.";
+                }
                 return View("FindCars", availableCars); 
             }
 
