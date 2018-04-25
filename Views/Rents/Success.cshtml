@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Rent opration succcessful!";
+
+}
+
+
+<div class="jumbotron">
+    <h1 class="display-3">Rent successful</h1>
+    <p class="lead">
+        We will make sure your vehicle will be ready at the specified pick-up date.
+    </p>
+    <p>
+        When picking up the car, please provide your rent reference (provided below) and your National identity card to verify
+        your identity.
+    </p>
+    <hr class="my-2">
+    <p>
+        Rent reference: @ViewBag.RentId
+    </p>
+    <p class="lead">
+        <a class="btn btn-info btn-lg" asp-controller="Rents" asp-action="FindCars" role="button">Rent another vehicle</a>
+        <a class="btn btn-info btn-lg" asp-controller="Manage" asp-action="Rents" role="button">My rents</a>
+    </p>
+</div>

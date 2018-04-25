@@ -1,0 +1,9 @@
+﻿@using Rentos.Views.Manage
+
+
+<ul class="nav nav-pills nav-fill flex-column">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" asp-action="Index">Profile</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" asp-action="ChangePassword">Password</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.RentsNavClass(ViewContext)" asp-action="Rents">My rents</a></li>
+</ul>
+

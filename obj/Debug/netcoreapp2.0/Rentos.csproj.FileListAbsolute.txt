@@ -1,0 +1,12 @@
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\bin\Debug\netcoreapp2.0\Rentos.deps.json
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\bin\Debug\netcoreapp2.0\Rentos.runtimeconfig.json
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\bin\Debug\netcoreapp2.0\Rentos.runtimeconfig.dev.json
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\bin\Debug\netcoreapp2.0\Rentos.dll
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\bin\Debug\netcoreapp2.0\Rentos.pdb
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\Rentos.csproj.CoreCompileInputs.cache
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\Rentos.AssemblyInfoInputs.cache
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\Rentos.AssemblyInfo.cs
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\Rentos.dll
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\Rentos.pdb
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\Rentos.csprojResolveAssemblyReference.cache
+Z:\GL3\Semestre 2\PU\Rent\Rentos\Rentos\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

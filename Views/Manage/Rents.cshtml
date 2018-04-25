@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Rentos.Models.RentViewModels.RentListViewModel>
+
+@{
+    ViewData["Title"] = "Rents";
+    ViewData.AddActivePage(ManageNavPages.Rents);
+
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Reference
+            </th>
+            <th>
+                Car
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent.PickupDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent.DropoffDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent.RentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.Manufacturer)
+                @Html.DisplayFor(modelItem => item.Car.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent.PickupDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent.DropoffDate)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

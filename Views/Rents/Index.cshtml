@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Rentos.Models.RentViewModels.RentListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent.RentId)
+            </th>
+            <th>
+                Car
+            </th>
+            <th>
+                Full name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent.PickupDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent.DropoffDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent.RentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.Manufacturer)
+                @Html.DisplayFor(modelItem => item.Car.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+                @Html.DisplayFor(modelItem => item.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent.PickupDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent.DropoffDate)
+            </td>
+            <td class="col-md-5 d-flex justify-content-center">
+                <a asp-action="Edit" asp-route-id="@item.Rent.RentId" class="btn btn-warning ml-3 mr-3">Edit</a>
+                <form asp-action="Delete">
+                    <input type="hidden" name="RentId" value="@item.Rent.RentId" />
+                    <input onclick="return confirm('Are you sure you want to remove this rent?');" type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

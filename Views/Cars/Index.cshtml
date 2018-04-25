@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Rentos.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Currently owned cars</h2>
+
+<p>
+    <a asp-action="Create">Add new car</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistrationNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAvailable)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td class="col-md-5 d-flex justify-content-center">
+                <a asp-action="Edit" asp-route-id="@item.CarId" class="btn btn-warning ml-3 mr-3">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.CarId" class="btn btn-info mr-3">Details</a> 
+                <form asp-action="Delete">
+                    <input type="hidden" name="id" value="@item.CarId" />
+                    <input onclick="return confirm('Are you sure you want to remove this car?');" type="submit" value="Delete" class="btn btn-danger" /> 
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

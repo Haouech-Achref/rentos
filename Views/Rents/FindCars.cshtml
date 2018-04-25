@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Rentos.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+    var duration = ViewBag.dropoff - ViewBag.Pickup;
+
+}
+
+
+
+<div class="article-list">
+    <div class="container-fluid ">
+        <div class="intro">
+            <h2 class="text-center">Please select a vehicle</h2>
+            <h6 class="text-center">A standard 500DT precaution fee will be applied to all rent operations.</h6>
+            <hr />
+        </div>
+        
+            @foreach (var car in Model)
+    {
+
+        var carPicture = "/images/cars/" + car.Picture;
+        var totalPrice = (car.Price * duration.Days) + 500;
+        <div class="row justify-content-center">
+            <div class="card col-lg-10">
+                <img class="card-img-top img-fluid" src="@carPicture">
+                <div class="card-body">
+                    <h4 class="card-title text-center">@car.Manufacturer @car.Model</h4>
+                    <table class="table table-striped">
+                        <tbody>
+
+                            <tr>
+                                <td><b>Color</b></td>
+                                <td> @car.Color</td>
+                            </tr>
+                            <tr>
+                                <td><b> Power</b></td>
+                                <td> @car.Power bhp</td>
+                            </tr>
+                            <tr>
+                                <td> <b>Price per day</b></td>
+                                <td> @car.Price TND</td>
+                            </tr>
+                            <tr>
+                                <td> <b>Total price (@duration.Days days)</b></td>
+                                <td> @totalPrice TND</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form asp-controller="Rents" asp-action="RentOperation">
+                        <input type="text" name="CarId" value="@car.CarId" hidden />
+                        <input type="submit" value="Rent" class="btn btn-info pull-right" />
+                    </form>
+                </div>
+            </div>
+        </div>
+}
+        </div>
+        </div>
