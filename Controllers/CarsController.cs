@@ -103,7 +103,7 @@ namespace Rentos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CarId,Manufacturer,Model,RegistrationNumber,Color,Mileage,Power,Price,IsAvailable")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("CarId,Manufacturer,Model,RegistrationNumber,Picture,Color,Mileage,Power,Price,IsAvailable")] Car car)
         {
             if (id != car.CarId)
             {

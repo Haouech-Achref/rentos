@@ -99,7 +99,15 @@ namespace Rentos.Controllers
             if (ModelState.IsValid)
             {
                 
-                var currentRents = _context.Rent.Where(r => (DateTime.Compare(r.DropoffDate, rentSearch.PickupDate) < 0 && DateTime.Compare( r.PickupDate ,rentSearch.DropoffDate) > 0));
+                var currentRents = _context.Rent.Where(r => 
+                (
+                ((DateTime.Compare(r.PickupDate,rentSearch.PickupDate) >= 0) && (DateTime.Compare(r.PickupDate,rentSearch.DropoffDate) <= 0))
+                ||
+                ((DateTime.Compare(r.DropoffDate,rentSearch.PickupDate) >= 0) && (DateTime.Compare(r.DropoffDate, rentSearch.DropoffDate) <= 0))
+                ||
+                ((DateTime.Compare(r.PickupDate, rentSearch.PickupDate) <= 0) && (DateTime.Compare(r.DropoffDate, rentSearch.DropoffDate) >= 0))
+                )
+                );
                 var unavailableCars = new List<Car>();
                 foreach (var item in currentRents)
                 {
@@ -191,7 +199,13 @@ namespace Rentos.Controllers
             {
                 try
                 {
-                    var currentRents = _context.Rent.Where(r => !(r.DropoffDate <= rent.PickupDate && r.PickupDate >= rent.DropoffDate));
+                    var currentRents = _context.Rent.Where(r => (
+                ((DateTime.Compare(r.PickupDate, rent.PickupDate) >= 0) && (DateTime.Compare(r.PickupDate, rent.DropoffDate) <= 0))
+                ||
+                ((DateTime.Compare(r.DropoffDate, rent.PickupDate) >= 0) && (DateTime.Compare(r.DropoffDate, rent.DropoffDate) <= 0))
+                ||
+                ((DateTime.Compare(r.PickupDate, rent.PickupDate) <= 0) && (DateTime.Compare(r.DropoffDate, rent.DropoffDate) >= 0))
+                ));
                     if(!currentRents.Any(c => c.Car_CarId == rent.Car_CarId))
                     { 
                     _context.Update(rent);

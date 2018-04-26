@@ -16,8 +16,9 @@
         <div class="card bg-dark text-info text-center">
             <img id="carPic" src="#" alt="Upload a picture to see the preview here." class="img-thumbnail img-fluid bg-dark" />
         </div>
-        <form asp-action="Create" asp-controller="Cars" enctype="multipart/form-data">
+        <form asp-action="Edit" asp-controller="Cars" enctype="multipart/form-data">
             <input type="hidden" asp-for="CarId" />
+            <input type="hidden" asp-for="Picture" />
             <div class="row justify-content-center">
                 <div class="form-group m-2">
                     <label asp-for="Manufacturer" class="control-label"></label>
